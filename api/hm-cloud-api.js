@@ -274,10 +274,10 @@ class HmCloudAPI {
         await this.callRestApi('device/control/setSwitchState', data);
     }
     
-    //door commands as number: 1 = open; 2 = stop; 3 = close; 4 = ventilation position
     async deviceControlSendDoorCommand(deviceId, doorCommand, channelIndex = 1) {
         let data = { "deviceId": deviceId, "channelIndex": channelIndex, 'doorCommand': doorCommand };
         await this.callRestApi('device/control/sendDoorCommand', data);
+        //door commands as number: 0 = open; 1 = stop; 2 = close; 3 = ventilation position
     }
 
     async deviceControlResetEnergyCounter(deviceId, channelIndex = 1) {
