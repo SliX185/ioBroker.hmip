@@ -487,7 +487,7 @@ class HmIpCloudAccesspointAdapter extends Adapter {
                         let dimLevel = await this.getStateAsync(
                             `devices.${o.native.id}.channels.${o.native.channel}.dimLevel`,
                         );
-                        let opticalSignalBehaviour = await this.getStateAsync(
+                        let opticalSignal = await this.getStateAsync(
                             `devices.${o.native.id}.channels.${o.native.channel}.opticalSignalBehaviour`,
                         );
                         if (dimLevel > 1) {
@@ -510,7 +510,7 @@ class HmIpCloudAccesspointAdapter extends Adapter {
                             rgb.val,
                             dimLevel.val,
                             o.native.channel,
-                            opticalSignalBehaviour.val,
+                            opticalSignal.val,
                         );
                     }
                     break;
@@ -1496,8 +1496,8 @@ class HmIpCloudAccesspointAdapter extends Adapter {
         );
         promises.push(
             this.secureSetStateAsync(
-                `devices.${device.id}.channels.${channel}.setOpticalSignalBehaviour`,
-                device.functionalChannels[channel].setOpticalSignalBehaviour,
+                `devices.${device.id}.channels.${channel}.opticalSignalBehaviour`,
+                device.functionalChannels[channel].opticalSignalBehaviour,
                 true,
             ),
         );
@@ -4470,9 +4470,9 @@ class HmIpCloudAccesspointAdapter extends Adapter {
             }),
         );
         promises.push(
-            this.extendObject(`devices.${device.id}.channels.${channel}.setOpticalSignalBehaviour`, {
+            this.extendObject(`devices.${device.id}.channels.${channel}.opticalSignalBehaviour`, {
                 type: 'state',
-                common: { name: 'setOpticalSignalBehaviour', type: 'string',"states": {"ON": "ON", "BLINKING_MIDDLE": "BLINKING_MIDDLE", "FLASH_MIDDLE": "FLASH_MIDDLE", "BILLOW_MIDDLE": "BILLOW_MIDDLE"}, role: 'state', read: true, write: true },
+                common: { name: 'opticalSignalBehaviour', type: 'string',"states": {"ON": "ON", "BLINKING_MIDDLE": "BLINKING_MIDDLE", "FLASH_MIDDLE": "FLASH_MIDDLE", "BILLOW_MIDDLE": "BILLOW_MIDDLE"}, role: 'state', read: true, write: true },
                 native: { id: device.id, channel: channel, parameter: 'setOpticalSignalBehaviour' },
             }),
         );
